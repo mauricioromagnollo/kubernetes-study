@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: frontend-rs
+  labels:
+    app: frontend
+spec:
+  template:
+    metadata:
+      name: nginx-pod
+      labels:
+        env: production
+    spec:
+      containers:
+        - name: nginx-container
+          image: nginx
+  selector:
+    matchLabels:
+      env: production # Ou seja, todos os pods de label production terão 2 replícas
+  replicas: 2
+    
